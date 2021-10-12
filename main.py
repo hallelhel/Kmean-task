@@ -50,20 +50,21 @@ def update_cluster():
 
     loc = 0
     fig = plt.figure(figsize=(10, 9))
+
     for i in range(k):
       sub = fig.add_subplot(k, 6, loc+1)
-      sub.set_title('Number:{}'.format(reference_labels[i]), fontsize=10,loc='left',pad=-0.1)
+      sub.set_title('Number:{} center'.format(reference_labels[i]), fontsize=10,loc='left',pad=-0.1)
       sub.imshow(centroids[i])
       plt.axis('off')
       loc = loc + 1
 
       for j in indexes_of_img_to_show[i]:
         sub = fig.add_subplot(k, 6, loc + 1)
-        # sub.set_title('Number:{}'.format(reference_labels[i]), fontsize=8)
+        sub.set_title('Number:{}'.format(reference_labels[i]), fontsize=8)
         sub.imshow(x_test_as_mat[j])
         plt.axis('off')
         loc = loc + 1
-
+    fig.tight_layout()
     plt.savefig('cluster.png')
     image_path = 'cluster.png'
     encoded_img = get_response_image(image_path)
